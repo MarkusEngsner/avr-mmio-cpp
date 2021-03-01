@@ -7,6 +7,12 @@ CC = avr-g++
 #led.o: led.cpp
 #	avr-g++ -g -Os -mmcu=atmega328p -c led.cpp -std=c++11 -o led.o
 
+led.o: led.cpp
+	avr-g++ -g -Os -mmcu=atmega328p -c led.cpp -std=c++11 -o led.o
+	avr-g++ -mmcu=atmega328p led.o -o led
+	avr-objcopy -O ihex -R .eeprom led led.hex
+
+
 transfer: led.cpp
 	avr-g++ -g -Os -mmcu=atmega328p -c led.cpp -std=c++11 -o led.o
 	avr-g++ -mmcu=atmega328p led.o -o led
